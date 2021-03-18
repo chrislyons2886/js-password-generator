@@ -35,7 +35,7 @@ function writePassword() {
 function generatePassword() {
 
   var bigArray = [];
-  var password = [];
+  var  password = []
 
   var wantsLowercase = confirm('Do you want lowercase characters?');
   console.log(wantsLowercase);
@@ -76,6 +76,7 @@ function generatePassword() {
   //   alert("Please select at least one character type!");
   //   return;
   // }
+
   var passwordLength = window.prompt('How long would you like your password to be (8-128 characters)?')
   console.log(passwordLength);
   if (passwordLength < 8 || passwordLength > 128) {
@@ -86,7 +87,9 @@ function generatePassword() {
     alert("Must be a number!")
     return;
   }
+console.log (passwordLength)
 passwordLength = passwordLength - password.length;
+console.log (passwordLength)
  
   for (let i = 0; i < passwordLength; i++) {
     let randomIndex = Math.floor(Math.random() * bigArray.length);
