@@ -25,65 +25,73 @@ var special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+"]
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  if(password!==undefined){
+  if (password !== undefined) {
 
     var passwordText = document.querySelector("#password");
-  
+
     passwordText.value = password;
   }
 }
-function generatePassword(){
-  var password = [];
+function generatePassword() {
+
   var bigArray = [];
+  var password = [];
 
   var wantsLowercase = confirm('Do you want lowercase characters?');
   console.log(wantsLowercase);
-  if (wantsLowercase){
-    bigArray=bigArray.concat(lower)
+  if (wantsLowercase) {
+    bigArray = bigArray.concat(lower);
+    var randomLowerchar = lower[Math.floor(Math.random()*lower.length)];
+    password.push (randomLowerchar)
   }
-  var wantsUppercase = confirm ('Do you want uppercase characters?');
-  console.log (wantsUppercase);
-  if (wantsUppercase){
-    bigArray=bigArray.concat(upper)
+  var wantsUppercase = confirm('Do you want uppercase characters?');
+  console.log(wantsUppercase);
+  if (wantsUppercase) {
+    bigArray = bigArray.concat(upper)
+    var randomUpperchar = upper[Math.floor(Math.random()*upper.length)];
+    password.push (randomUpperchar)
   }
-  var wantsNumbers = confirm ('Do you want numbers?');
-  console.log (wantsNumbers);
-  if (wantsNumbers){
-    bigArray=bigArray.concat(numbers)
+  var wantsNumbers = confirm('Do you want numbers?');
+  console.log(wantsNumbers);
+  if (wantsNumbers) {
+    bigArray = bigArray.concat(numbers)
+    var randomNumberchar = numbers[Math.floor(Math.random()*numbers.length)];
+    password.push (randomNumberchar)
   }
-  var wantsSpecial = confirm ('Do you want special characters?');
-  console.log (wantsSpecial);
-  if (wantsSpecial){
-    bigArray=bigArray.concat(special)
+  var wantsSpecial = confirm('Do you want special characters?');
+  console.log(wantsSpecial);
+  if (wantsSpecial) {
+    bigArray = bigArray.concat(special)
+    var randomSpecialchar = special[Math.floor(Math.random()*special.length)];
+    password.push (randomSpecialchar)
   }
-  // alternative approach
-  if (bigArray.length===0){
+
+  if (bigArray.length === 0) {
     alert("Please select at least one character type!");
     return;
   }
 
-
-
+  // alternative approach
   // if (wantsLowercase === false && wantsUppercase === false && wantsNumbers === false && wantsSpecial === false){
   //   alert("Please select at least one character type!");
   //   return;
   // }
   var passwordLength = window.prompt('How long would you like your password to be (8-128 characters)?')
-  console.log (passwordLength);
-if (passwordLength<8||passwordLength>128){
-  alert("Please select a value between 8 and 128!");
-  return;
-}
-if (isNaN(passwordLength)){
-  alert ("Must be a number!")
-  return;
-}
-
-
+  console.log(passwordLength);
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert("Please select a value between 8 and 128!");
+    return;
+  }
+  if (isNaN(passwordLength)) {
+    alert("Must be a number!")
+    return;
+  }
+passwordLength = passwordLength - password.length;
+ 
   for (let i = 0; i < passwordLength; i++) {
-    let j = Math.floor(Math.random()*bigArray.length);
-    let passDigit=bigArray[j];
-    password.push(passDigit);
+    let randomIndex = Math.floor(Math.random() * bigArray.length);
+    let randomCharacter = bigArray[randomIndex];
+    password.push(randomCharacter);
   }
   return password.join("")
 }
